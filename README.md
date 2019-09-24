@@ -1,2 +1,2 @@
 # android-learning
-记录android项目所用到的功能代码块
+整理android项目所用到的功能代码块以及涉及到的技术
