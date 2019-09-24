@@ -1,2 +1,3 @@
 # android-learning
-整理android项目所用到的功能代码块以及涉及到的技术
+
+作为一个Web Developer参与到了一个android项目的开发中，整理项目所用到的功能代码块以及涉及到的技术

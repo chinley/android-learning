@@ -26,7 +26,7 @@ tablayout+viewpager+fragment是主流app上都会见到的布局，分以下部�
 
 编写布局文件
 ```
-	    <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
@@ -41,11 +41,11 @@ tablayout+viewpager+fragment是主流app上都会见到的布局，分以下部�
             app:tabIndicatorHeight="0dp"
             android:layout_height="match_parent"/>
 			
-		        <android.support.v4.view.ViewPager
-			            android:layout_weight="1"
-			            android:layout_width="match_parent"
-			            android:layout_height="0dp">
-	    </LinearLayout>
+		<android.support.v4.view.ViewPager
+			android:layout_weight="1"
+			android:layout_width="match_parent"
+			android:layout_height="0dp">
+	</LinearLayout>
 ```
 tablayout与viewpager不在同一个父元素都可以
 
