@@ -19,13 +19,13 @@ tablayout+viewpager+fragment是主流app上都会见到的布局，分以下部�
 
 首先引入工具包
 
-```
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
-```
+
 
 编写布局文件
-```
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,11 +46,11 @@ tablayout+viewpager+fragment是主流app上都会见到的布局，分以下部�
 			android:layout_width="match_parent"
 			android:layout_height="0dp">
 	</LinearLayout>
-```
+
 tablayout与viewpager不在同一个父元素都可以
 
 编写java代码
-```
+
     private List<Fragment>myFragment;
     private ViewPager myViewPager;
     private TabLayout tab;
@@ -72,7 +72,8 @@ tablayout与viewpager不在同一个父元素都可以
 	
     private void initViewPager(){
 
-        // 如果viewpager是处于fragment之中就需要用getChildFragmentManager()，处于activity之中用getSupportFragmentManager()
+        // 如果viewpager是处于fragment之中就需要用getChildFragmentManager()，
+        处于activity之中用getSupportFragmentManager()
         mAdapter = new FragmentStatePagerAdapter(getChildFragmentManager()) { 
 		
             //选中的item, 返回该fragment
@@ -95,7 +96,7 @@ tablayout与viewpager不在同一个父元素都可以
         };
 		
         myViewPager.setAdapter(mAdapter);
-        myViewPager.setOffscreenPageLimit(myFragment.size() -1);
+        myViewPager.setOffscreenPageLimit(1);
         myViewPager.setCurrentItem(0);
         tab.setupWithViewPager(myViewPager);
         initTab();
@@ -129,13 +130,12 @@ tablayout与viewpager不在同一个父元素都可以
             tab.addTab(tab.newTab());
         }
 
-        int tabCount =tab.getTabCount();
         LinearLayout tabLayout = (LinearLayout)((ViewGroup) tab.getChildAt(0)).getChildAt(0);
         TextView tabTextView = (TextView) tabLayout.getChildAt(1);
         tabTextView.setTypeface(tabTextView.getTypeface(),Typeface.BOLD);  // 初始化时第一个加粗
 
     }
-```
+
 通过上述方法，即可实现左右滑动tab展示不同界面的效果
 
 #### 2.常用函数
@@ -148,4 +148,43 @@ tablayout与viewpager不在同一个父元素都可以
     
         viewPager.setCurrentItem(int item, boolean smoothScroll)
         设置当前页面，第二个参数可选，**该函数可以用于回到用户上一次停留的页面**
+        
+        viewPager.postDelayed(Runnable action, long delayMillis)
+        viewPager自带延迟执行的函数
+        
+#### 3.懒加载
+ 
+        即在viewPager滑动到当前fragmeng时才加载数据，未滑动时候不加载，减少请求量。
+        使用到fragment中的生命周期函数setUserVisibleHint(boolean isVisibleToUser)
+        
+        示例：
+        @Override
+        public void setUserVisibleHint(boolean isVisibleToUser) {
+            super.setUserVisibleHint(isVisibleToUser);
+            if (isVisibleToUser && isFirstLoad) {
+                loadData();
+            }
+        }
+        
+        但这种方法在初次加载fragment时对第一个fragment无效，因为加载第一个fragment时setUserVisibleHint的执行时间比onCreateView
+    要早，因此需要对第一个fragment特殊判断。
+    
+#### 4.其他注意的点
+
+ **遇到使用viewPager出现空白页面的两种情况：**
+    
+     1.处于fragment之中的viewpager就用了getSupportFragmentManager() X
+
+       使用getChildFragmentManager() √
+ 
+    2.viewpager下的Fragment样式xml中有组件的id重复，注意不要重复**
+        
+**FragmentStatePagerAdapter VS FragmentPagerAdapter：**
+    
+    FragmentStatePagerAdapter：在每次切换页面的时候，是将fragment进行回收，适合页面较多的fragment使用，
+                               这样就不会消耗更多的内存。
+                               
+    FragmentPagerAdapter：在每次切换页面的时候，是将fragment进行分离，适合页面较少的fragment使用以保存一些内存，
+                          对系统内存不会有多大影响。
+                          
     
