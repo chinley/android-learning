@@ -19,38 +19,38 @@ tablayout+viewpager+fragment是主流app上都会见到的布局，分以下部�
 
 首先引入工具包
 
-
+```android
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
-
+```
 
 编写布局文件
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+```android
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center">
 		
         <android.support.design.widget.TabLayout
-            android:layout_width="match_parent"
-            android:background="@color/colorBottom"
-            app:tabTextColor="@color/fouragray"
-            app:tabIndicatorFullWidth="false"
-            android:layout_gravity="center"
-            app:tabMode="scrollable"
-            app:tabIndicatorHeight="0dp"
-            android:layout_height="match_parent"/>
+		android:layout_width="match_parent"
+		android:background="@color/colorBottom"
+		app:tabTextColor="@color/fouragray"
+		app:tabIndicatorFullWidth="false"
+		android:layout_gravity="center"
+		app:tabMode="scrollable"
+		app:tabIndicatorHeight="0dp"
+		android:layout_height="match_parent"/>
 			
-		<android.support.v4.view.ViewPager
-			android:layout_weight="1"
-			android:layout_width="match_parent"
-			android:layout_height="0dp">
+	<android.support.v4.view.ViewPager
+		android:layout_weight="1"
+		android:layout_width="match_parent"
+		android:layout_height="0dp">
 	</LinearLayout>
-
+```
 tablayout与viewpager不在同一个父元素都可以
 
 编写java代码
-
+```android
     private List<Fragment>myFragment;
     private ViewPager myViewPager;
     private TabLayout tab;
@@ -135,7 +135,7 @@ tablayout与viewpager不在同一个父元素都可以
         tabTextView.setTypeface(tabTextView.getTypeface(),Typeface.BOLD);  // 初始化时第一个加粗
 
     }
-
+```
 通过上述方法，即可实现左右滑动tab展示不同界面的效果
 
 #### 2.常用函数
@@ -157,7 +157,7 @@ tablayout与viewpager不在同一个父元素都可以
         即在viewPager滑动到当前fragmeng时才加载数据，未滑动时候不加载，减少请求量。
         使用到fragment中的生命周期函数setUserVisibleHint(boolean isVisibleToUser)
         
-        示例：
+        示例:
         @Override
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
