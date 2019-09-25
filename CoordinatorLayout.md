@@ -1,6 +1,6 @@
 ### CoordinatorLayout 让应用有复杂的联动效果
 #### 示例
-![](https://www.z4a.net/images/2019/09/25/20190925_111732.md.gif)
+![](https://www.z4a.net/images/2019/09/25/20190925_111732.gif)
 
 &emsp;coordinateLayout遵循Material Design风格，一般用于长页面，尤其是页面中的上部分是普通的控件，下部分是列表的情况。分以下部分介绍coordinateLayout：
 
