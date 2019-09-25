@@ -177,7 +177,7 @@ tablayout与viewpager不在同一个父元素都可以
 
        使用getChildFragmentManager() √
  
-    2.viewpager下的Fragment样式xml中有组件的id重复，注意不要重复**
+    2.viewpager下的Fragment样式xml中有组件的id重复，**注意不要重复**
         
 **FragmentStatePagerAdapter VS FragmentPagerAdapter：**
     
